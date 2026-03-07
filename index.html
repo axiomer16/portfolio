@@ -2,11 +2,111 @@
 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Raphaël Véry – Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Playfair+Display:ital@1&family=Marcellus&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
-    hello portfolio
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-logo">R<span>V</span></div>
+    <ul class="nav-links">
+      <li><a href="#hero">Accueil</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#projects">Projets</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-name">Raphaël Véry</h1>
+      <p class="hero-tagline">Développeur passionné · Respect · Travail · Famille</p>
+      <a href="#projects" class="btn-primary">Voir mes projets</a>
+    </div>
+    <div class="hero-scroll-hint">↓</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">À propos</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>Bonjour, je suis <strong>Raphaël Véry</strong>, développeur passionné par la technologie, les voitures et les motos. Je construis des solutions robustes et élégantes, avec le même soin que je mets dans tout ce que j'entreprends.</p>
+          <p class="about-quote">"Appliquer à autrui ce qu'on applique à soi-même."</p>
+          <div class="values">
+            <div class="value-item"><i class="fas fa-handshake"></i><span>Respect</span></div>
+            <div class="value-item"><i class="fas fa-laptop-code"></i><span>Travail</span></div>
+            <div class="value-item"><i class="fas fa-heart"></i><span>Famille</span></div>
+          </div>
+        </div>
+        <div class="about-skills">
+          <h3>Compétences</h3>
+          <div class="skill-bar"><span>Python</span><div class="bar"><div class="fill" data-width="85%"></div></div></div>
+          <div class="skill-bar"><span>JavaScript</span><div class="bar"><div class="fill" data-width="75%"></div></div></div>
+          <div class="skill-bar"><span>HTML/CSS</span><div class="bar"><div class="fill" data-width="90%"></div></div></div>
+          <div class="skill-bar"><span>SQL</span><div class="bar"><div class="fill" data-width="70%"></div></div></div>
+          <div class="skill-bar"><span>Git / GitHub</span><div class="bar"><div class="fill" data-width="80%"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Mes Projets GitHub</h2>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">Tous</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="python">Python</button>
+        <button class="filter-btn" data-filter="data">Data</button>
+        <button class="filter-btn" data-filter="C++">C++</button>
+      </div>
+      <div class="projects-grid" id="projects-grid">
+        <!-- Cartes injectées par JS -->
+      </div>
+      <div class="github-cta">
+        <a href="https://github.com/axiomer16" target="_blank" class="btn-secondary"><i class="fab fa-github"></i> Voir tout sur GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <p>Vous avez un projet ? N'hésitez pas à me contacter.</p>
+          <a href="mailto:raphael.very@email.com" class="contact-link"><i class="fas fa-envelope"></i> raphael.very@email.com</a>
+          <a href="https://github.com/axiomer16" target="_blank" class="contact-link"><i class="fab fa-github"></i> github.com/axoimer16</a>
+          <a href="https://linkedin.com/in/raphaelvery" target="_blank" class="contact-link"><i class="fab fa-linkedin"></i> linkedin.com/in/raphaelvery</a>
+        </div>
+        <form class="contact-form" id="contact-form">
+          <input type="text" placeholder="Votre nom" required />
+          <input type="email" placeholder="Votre email" required />
+          <textarea rows="5" placeholder="Votre message" required></textarea>
+          <button type="submit" class="btn-primary">Envoyer</button>
+          <p class="form-msg" id="form-msg"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 <span>Raphaël Véry</span> · Fait avec passion</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

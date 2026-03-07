@@ -17,10 +17,22 @@ async function fetchGitHubProjects() {
     // Vider le tableau projects et le remplir avec les repos GitHub
     projects.length = 0;
 
-    repos
-      .filter(repo => !repo.fork) // Exclure les forks
-      .forEach(repo => {
+    const filteredRepos = repos.filter(repo => !repo.fork);
 
+    // Récupérer les langages de chaque repo
+    const reposWithLangs = await Promise.all(
+      filteredRepos.map(async (repo) => {
+        try {
+          const langResponse = await fetch(repo.languages_url);
+          const langData = await langResponse.json();
+          repo.allLanguages = Object.keys(langData); // ex: ["Python", "CSS", "HTML"]
+        } catch {
+          repo.allLanguages = repo.language ? [repo.language] : [];
+        }
+        return repo;
+      })
+    );
+    reposWithLangs.forEach(repo => {
         // Détecter la catégorie selon le langage
         const langToCategory = {
           'Python'     : 'python',
@@ -55,8 +67,7 @@ async function fetchGitHubProjects() {
         const icon = langToIcon[repo.language] || '💻';
 
         // Construire les badges de langages
-        const langs = [];
-        if (repo.language) langs.push(repo.language);
+        const langs = [...repo.allLanguages];
         if (repo.stargazers_count > 0) langs.push(`⭐ ${repo.stargazers_count}`);
 
         projects.push({
@@ -104,6 +115,7 @@ function renderProjects(filter = "all") {
     card.className = "project-card reveal";
     card.style.transitionDelay = `${i * 0.08}s`;
     card.innerHTML = `
+      <a href="${p.url}" target="_blank" class="project-link">
       <div class="project-card-header">
         <span class="project-icon">${p.icon}</span>
         <span class="project-tag">${p.tag}</span>
@@ -114,10 +126,9 @@ function renderProjects(filter = "all") {
         <div class="project-langs">
           ${p.langs.map(l => `<span class="lang-badge">${l}</span>`).join("")}
         </div>
-        <a href="${p.url}" target="_blank" class="project-link">
-          <i class="fab fa-github"></i> Voir
-        </a>
+        
       </div>
+      </a>
     `;
     grid.appendChild(card);
   });

@@ -48,6 +48,7 @@ body {
   color: var(--beige);
   letter-spacing: 2px;
 }
+.LogoNavBar { width: 5rem; height: 5rem; }
 .nav-logo span { color: var(--bleu-clair); }
 
 .nav-links { list-style: none; display: flex; gap: 2.5rem; }
@@ -305,12 +306,12 @@ section { padding: 100px 0; }
   border-radius: 50px;
   border: 1px solid rgba(102,155,188,0.25);
 }
-.project-link {
-  color: var(--bleu-clair); font-size: 0.8rem; text-decoration: none;
-  display: flex; align-items: center; gap: 5px;
-  transition: color var(--transition);
+.project-card .project-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
-.project-link:hover { color: var(--white); }
+
 
 .github-cta { text-align: center; margin-top: 50px; }
 

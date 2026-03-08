@@ -2,13 +2,14 @@
 const userGithub = 'axiomer16'
 
 // ===== PROJECTS DATA =====
-const projects = [
-  
-];
+const projects = [];
+
+const WORKER_URL = 'https://portfolio-worker.raphael-very.workers.dev';
 
 async function fetchGitHubProjects() {
   try {
-    const response = await fetch(`https://api.github.com/users/${userGithub}/repos?per_page=100&sort=updated`);
+    const response = await fetch(`${WORKER_URL}/repos`);
+
     
     if (!response.ok) throw new Error(`Erreur API : ${response.status}`);
     
@@ -17,10 +18,22 @@ async function fetchGitHubProjects() {
     // Vider le tableau projects et le remplir avec les repos GitHub
     projects.length = 0;
 
-    repos
-      .filter(repo => !repo.fork) // Exclure les forks
-      .forEach(repo => {
+    const filteredRepos = repos.filter(repo => !repo.fork);
 
+    // Récupérer les langages de chaque repo
+    const reposWithLangs = await Promise.all(
+      filteredRepos.map(async (repo) => {
+        try {
+          const langResponse = await fetch(repo.languages_url);
+          const langData = await langResponse.json();
+          repo.allLanguages = Object.keys(langData); // ex: ["Python", "CSS", "HTML"]
+        } catch {
+          repo.allLanguages = repo.language ? [repo.language] : [];
+        }
+        return repo;
+      })
+    );
+    reposWithLangs.forEach(repo => {
         // Détecter la catégorie selon le langage
         const langToCategory = {
           'Python'     : 'python',
@@ -55,8 +68,7 @@ async function fetchGitHubProjects() {
         const icon = langToIcon[repo.language] || '💻';
 
         // Construire les badges de langages
-        const langs = [];
-        if (repo.language) langs.push(repo.language);
+        const langs = [...repo.allLanguages];
         if (repo.stargazers_count > 0) langs.push(`⭐ ${repo.stargazers_count}`);
 
         projects.push({
@@ -104,6 +116,7 @@ function renderProjects(filter = "all") {
     card.className = "project-card reveal";
     card.style.transitionDelay = `${i * 0.08}s`;
     card.innerHTML = `
+      <a href="${p.url}" target="_blank" class="project-link">
       <div class="project-card-header">
         <span class="project-icon">${p.icon}</span>
         <span class="project-tag">${p.tag}</span>
@@ -114,10 +127,9 @@ function renderProjects(filter = "all") {
         <div class="project-langs">
           ${p.langs.map(l => `<span class="lang-badge">${l}</span>`).join("")}
         </div>
-        <a href="${p.url}" target="_blank" class="project-link">
-          <i class="fab fa-github"></i> Voir
-        </a>
+        
       </div>
+      </a>
     `;
     grid.appendChild(card);
   });
@@ -174,13 +186,57 @@ document.querySelectorAll(".nav-links a").forEach(link => {
 });
 
 // ===== CONTACT FORM =====
-document.getElementById("contact-form").addEventListener("submit", (e) => {
+document.getElementById("contact-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const msg = document.getElementById("form-msg");
-  msg.textContent = "✓ Message envoyé ! Je vous répondrai rapidement.";
-  e.target.reset();
-  setTimeout(() => msg.textContent = "", 5000);
+  const btn = e.target.querySelector("button[type='submit']");
+  
+  // Récupérer les champs
+  const name = e.target.querySelector('[name="name"]').value.trim();
+  const email = e.target.querySelector('[name="email"]').value.trim();
+  const subject = e.target.querySelector('[name="subject"]').value.trim();
+  const message = e.target.querySelector('[name="message"]').value.trim();
+
+  // Validation basique côté client
+  if (!name || !email || !subject || !message) {
+    msg.style.color = "#ff4444";
+    msg.textContent = "⚠ Veuillez remplir tous les champs.";
+    return;
+  }
+
+  // Désactiver le bouton pendant l'envoi
+  btn.disabled = true;
+  btn.textContent = "Envoi en cours...";
+  msg.style.color = "var(--bleu-clair)";
+  msg.textContent = "";
+
+  try {
+    const response = await fetch(`${WORKER_URL}/contact`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, subject, message }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      msg.style.color = "#00ff88";
+      msg.textContent = "✓ Message envoyé ! Je vous répondrai rapidement.";
+      e.target.reset();
+    } else {
+      msg.style.color = "#ff4444";
+      msg.textContent = `⚠ ${data.error || "Erreur lors de l'envoi."}`;
+    }
+  } catch (error) {
+    msg.style.color = "#ff4444";
+    msg.textContent = "⚠ Erreur réseau. Réessayez plus tard.";
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Envoyer";
+    setTimeout(() => (msg.textContent = ""), 7000);
+  }
 });
+
 
 // ===== ADD REVEAL CLASS TO ELEMENTS =====
 function addRevealClasses() {

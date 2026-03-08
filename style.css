@@ -48,6 +48,7 @@ body {
   color: var(--beige);
   letter-spacing: 2px;
 }
+.LogoNavBar { width: 6rem; height: 6rem; }
 .nav-logo span { color: var(--bleu-clair); }
 
 .nav-links { list-style: none; display: flex; gap: 2.5rem; }
@@ -116,7 +117,7 @@ body {
 
 .hero-scroll-hint {
   position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-  color: var(--bleu-clair); font-size: 1.5rem;
+  color: var(--bleu-clair); font-size: 2.5rem;
   animation: bounce 2s infinite;
 }
 
@@ -305,12 +306,12 @@ section { padding: 100px 0; }
   border-radius: 50px;
   border: 1px solid rgba(102,155,188,0.25);
 }
-.project-link {
-  color: var(--bleu-clair); font-size: 0.8rem; text-decoration: none;
-  display: flex; align-items: center; gap: 5px;
-  transition: color var(--transition);
+.project-card .project-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
-.project-link:hover { color: var(--white); }
+
 
 .github-cta { text-align: center; margin-top: 50px; }
 
@@ -362,6 +363,12 @@ footer {
   letter-spacing: 1px;
 }
 footer span { color: var(--bleu-clair); }
+a.btn-primary[href^="tel"] {
+  width: auto;
+  max-width: 225px;
+  display: inline-block;
+}
+
 
 /* ===== ANIMATIONS ===== */
 @keyframes fadeUp {
@@ -384,6 +391,7 @@ footer span { color: var(--bleu-clair); }
 @media (max-width: 768px) {
   .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: rgba(26,22,33,0.98); padding: 20px 5%; gap: 20px; }
   .nav-links.open { display: flex; }
+  .LogoNavBar { width: 5rem; height: 5rem; }
   .hamburger { display: flex; }
   .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
   .projects-grid { grid-template-columns: 1fr; }

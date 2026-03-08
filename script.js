@@ -2,13 +2,14 @@
 const userGithub = 'axiomer16'
 
 // ===== PROJECTS DATA =====
-const projects = [
-  
-];
+const projects = [];
+
+const WORKER_URL = 'https://portfolio-worker.raphael-very.workers.dev';
 
 async function fetchGitHubProjects() {
   try {
-    const response = await fetch(`https://api.github.com/users/${userGithub}/repos?per_page=100&sort=updated`);
+    const response = await fetch(`${WORKER_URL}/repos`);
+
     
     if (!response.ok) throw new Error(`Erreur API : ${response.status}`);
     

@@ -363,6 +363,12 @@ footer {
   letter-spacing: 1px;
 }
 footer span { color: var(--bleu-clair); }
+a.btn-primary[href^="tel"] {
+  width: auto;
+  max-width: 225px;
+  display: inline-block;
+}
+
 
 /* ===== ANIMATIONS ===== */
 @keyframes fadeUp {

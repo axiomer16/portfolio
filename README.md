@@ -6,4 +6,5 @@
 ## Worker requete AJAX vers github:
 ```https://dash.cloudflare.com/```
 
-
+## Mailer Resend:
+```https://resend.com/```

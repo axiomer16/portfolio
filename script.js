@@ -186,13 +186,57 @@ document.querySelectorAll(".nav-links a").forEach(link => {
 });
 
 // ===== CONTACT FORM =====
-document.getElementById("contact-form").addEventListener("submit", (e) => {
+document.getElementById("contact-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const msg = document.getElementById("form-msg");
-  msg.textContent = "✓ Message envoyé ! Je vous répondrai rapidement.";
-  e.target.reset();
-  setTimeout(() => msg.textContent = "", 5000);
+  const btn = e.target.querySelector("button[type='submit']");
+  
+  // Récupérer les champs
+  const name = e.target.querySelector('[name="name"]').value.trim();
+  const email = e.target.querySelector('[name="email"]').value.trim();
+  const subject = e.target.querySelector('[name="subject"]').value.trim();
+  const message = e.target.querySelector('[name="message"]').value.trim();
+
+  // Validation basique côté client
+  if (!name || !email || !subject || !message) {
+    msg.style.color = "#ff4444";
+    msg.textContent = "⚠ Veuillez remplir tous les champs.";
+    return;
+  }
+
+  // Désactiver le bouton pendant l'envoi
+  btn.disabled = true;
+  btn.textContent = "Envoi en cours...";
+  msg.style.color = "var(--bleu-clair)";
+  msg.textContent = "";
+
+  try {
+    const response = await fetch(`${WORKER_URL}/contact`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, subject, message }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      msg.style.color = "#00ff88";
+      msg.textContent = "✓ Message envoyé ! Je vous répondrai rapidement.";
+      e.target.reset();
+    } else {
+      msg.style.color = "#ff4444";
+      msg.textContent = `⚠ ${data.error || "Erreur lors de l'envoi."}`;
+    }
+  } catch (error) {
+    msg.style.color = "#ff4444";
+    msg.textContent = "⚠ Erreur réseau. Réessayez plus tard.";
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Envoyer";
+    setTimeout(() => (msg.textContent = ""), 7000);
+  }
 });
+
 
 // ===== ADD REVEAL CLASS TO ELEMENTS =====
 function addRevealClasses() {

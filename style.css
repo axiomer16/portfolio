@@ -48,7 +48,7 @@ body {
   color: var(--beige);
   letter-spacing: 2px;
 }
-.LogoNavBar { width: 5rem; height: 5rem; }
+.LogoNavBar { width: 6rem; height: 6rem; }
 .nav-logo span { color: var(--bleu-clair); }
 
 .nav-links { list-style: none; display: flex; gap: 2.5rem; }
@@ -117,7 +117,7 @@ body {
 
 .hero-scroll-hint {
   position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-  color: var(--bleu-clair); font-size: 1.5rem;
+  color: var(--bleu-clair); font-size: 2.5rem;
   animation: bounce 2s infinite;
 }
 
@@ -385,6 +385,7 @@ footer span { color: var(--bleu-clair); }
 @media (max-width: 768px) {
   .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: rgba(26,22,33,0.98); padding: 20px 5%; gap: 20px; }
   .nav-links.open { display: flex; }
+  .LogoNavBar { width: 5rem; height: 5rem; }
   .hamburger { display: flex; }
   .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
   .projects-grid { grid-template-columns: 1fr; }

@@ -271,6 +271,203 @@ section { padding: 100px 0; }
   transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+/* ===== SKILLS SECTION ===== */
+#skills { background: var(--noir); }
+
+.skills-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.skills-category h3 {
+  font-family: var(--font-title2);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--white);
+  margin-bottom: 25px;
+  padding-left: 15px;
+  border-left: 3px solid var(--bleu-clair);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+/* Skill Card */
+.skill-card {
+  background: rgba(51, 72, 109, 0.12);
+  border: 1px solid rgba(102, 155, 188, 0.15);
+  border-radius: var(--radius);
+  padding: 20px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--skill-color, var(--bleu-clair));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+
+.skill-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  border-color: rgba(102, 155, 188, 0.4);
+}
+
+.skill-card:hover::before {
+  transform: scaleX(1);
+}
+
+.skill-card-icon {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.skill-card-name {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--beige);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.skill-card-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.skill-card-fill {
+  height: 100%;
+  background: var(--skill-color, var(--bleu-clair));
+  border-radius: 50px;
+  transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ===== SKILL MODAL ===== */
+.skill-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.skill-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.skill-modal {
+  background: rgba(26, 22, 33, 0.97);
+  border: 1px solid rgba(102, 155, 188, 0.3);
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 480px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.skill-modal-overlay.active .skill-modal {
+  transform: scale(1) translateY(0);
+}
+
+.skill-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: var(--beige);
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: color var(--transition);
+  line-height: 1;
+}
+
+.skill-modal-close:hover {
+  color: var(--rouge-bord);
+}
+
+.skill-modal-icon {
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+}
+
+.skill-modal h3 {
+  font-family: var(--font-title2);
+  font-style: italic;
+  font-size: 1.6rem;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.skill-modal-level {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.skill-modal-level > span:first-child {
+  font-size: 0.85rem;
+  color: rgba(253, 240, 213, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.skill-modal-bar {
+  flex: 1;
+  max-width: 200px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.skill-modal-fill {
+  height: 100%;
+  border-radius: 50px;
+  transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+#skillModalPercent {
+  font-size: 0.95rem;
+  color: var(--bleu-clair);
+  font-weight: bold;
+  min-width: 40px;
+}
+
+.skill-modal p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(253, 240, 213, 0.8);
+}
+
 /* ===== PROJECTS ===== */
 #projects { background: var(--noir); }
 

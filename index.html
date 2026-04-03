@@ -18,6 +18,7 @@
     <ul class="nav-links">
       <li><a href="#hero" data-i18n="nav-home">Accueil</a></li>
       <li><a href="#about" data-i18n="nav-about">À propos</a></li>
+      <li><a href="#skills"><span data-i18n="nav-skills">Compétences</span></a></li>
       <li><a href="#projects" data-i18n="nav-projects">Projets</a></li>
       <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
       <li><a href="Cv.pdf" download class="btn-cv" id="cv-download"><i class="fas fa-download"></i> <span data-i18n="nav-cv">Mon CV</span></a></li>
@@ -62,6 +63,41 @@
       </div>
     </div>
   </section>
+
+  <!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <h2 class="section-title"><span data-i18n="skills-section-title">Compétences</span></h2>
+    <div class="skills-categories">
+      <div class="skills-category">
+        <h3 data-i18n="cat-languages">Langages</h3>
+        <div class="skills-grid" id="skills-languages"></div>
+      </div>
+      <div class="skills-category">
+        <h3 data-i18n="cat-frameworks">Frameworks & Librairies</h3>
+        <div class="skills-grid" id="skills-frameworks"></div>
+      </div>
+      <div class="skills-category">
+        <h3 data-i18n="cat-tools">Outils & Technologies</h3>
+        <div class="skills-grid" id="skills-tools"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="skill-modal-overlay" id="skillModalOverlay">
+    <div class="skill-modal">
+      <button class="skill-modal-close" id="skillModalClose">&times;</button>
+      <div class="skill-modal-icon" id="skillModalIcon"></div>
+      <h3 id="skillModalTitle"></h3>
+      <div class="skill-modal-level">
+        <span data-i18n="skill-level">Maîtrise</span>
+        <div class="skill-modal-bar"><div class="skill-modal-fill" id="skillModalFill"></div></div>
+        <span id="skillModalPercent"></span>
+      </div>
+      <p id="skillModalDesc"></p>
+    </div>
+  </div>
+</section>
 
   <!-- PROJECTS -->
   <section id="projects">

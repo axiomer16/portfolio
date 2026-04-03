@@ -374,7 +374,7 @@ const skillsData = {
     {
       name: 'TypeScript',
       icon: '💙',
-      level: 60,
+      level: 30,
       color: '#3178C6',
       desc: {
         fr: "Sur-ensemble de JavaScript ajoutant le typage statique. Améliore la maintenabilité et la détection d'erreurs dans les grands projets.",
@@ -404,7 +404,7 @@ const skillsData = {
     {
       name: 'PHP',
       icon: '🐘',
-      level: 65,
+      level: 80,
       color: '#777BB4',
       desc: {
         fr: "Langage serveur largement utilisé pour le développement web dynamique. Utilisé par WordPress, Laravel et Symfony.",
@@ -414,7 +414,7 @@ const skillsData = {
     {
       name: 'SQL',
       icon: '🗃️',
-      level: 70,
+      level: 75,
       color: '#4479A1',
       desc: {
         fr: "Langage de requêtes pour interagir avec les bases de données relationnelles. Permet de lire, écrire et manipuler des données.",
@@ -422,19 +422,9 @@ const skillsData = {
       }
     },
     {
-      name: 'R',
-      icon: '📈',
-      level: 50,
-      color: '#276DC3',
-      desc: {
-        fr: "Langage spécialisé dans l'analyse statistique et la visualisation de données. Très utilisé en recherche et data science.",
-        en: "Language specialized in statistical analysis and data visualization. Widely used in research and data science."
-      }
-    },
-    {
       name: 'C++',
       icon: '⚙️',
-      level: 55,
+      level: 60,
       color: '#00599C',
       desc: {
         fr: "Langage compilé performant utilisé pour les systèmes, les jeux vidéo et les applications nécessitant de hautes performances.",
@@ -444,7 +434,7 @@ const skillsData = {
     {
       name: 'Java',
       icon: '☕',
-      level: 50,
+      level: 15,
       color: '#ED8B00',
       desc: {
         fr: "Langage orienté objet robuste et portable. Utilisé pour les applications d'entreprise, Android et les systèmes distribués.",
@@ -454,7 +444,7 @@ const skillsData = {
     {
       name: 'Shell',
       icon: '🖥️',
-      level: 60,
+      level: 65,
       color: '#89E051',
       desc: {
         fr: "Langage de script pour automatiser des tâches système sous Linux/macOS. Essentiel pour le DevOps et l'administration.",
@@ -476,7 +466,7 @@ const skillsData = {
     {
       name: 'Symfony',
       icon: '🎵',
-      level: 60,
+      level: 75,
       color: '#000000',
       desc: {
         fr: "Framework PHP professionnel pour créer des applications web complexes. Architecture MVC, système de bundles et grande communauté.",
@@ -518,7 +508,7 @@ const skillsData = {
     {
       name: 'Git / GitHub',
       icon: '📦',
-      level: 80,
+      level: 95,
       color: '#F05032',
       desc: {
         fr: "Système de contrôle de version distribué. GitHub permet l'hébergement de code, la collaboration et le suivi de projets.",
@@ -528,7 +518,7 @@ const skillsData = {
     {
       name: 'Jupyter Notebook',
       icon: '📊',
-      level: 65,
+      level: 80,
       color: '#F37626',
       desc: {
         fr: "Application web interactive pour créer des documents mêlant code, visualisations et texte. Idéal pour la data science.",

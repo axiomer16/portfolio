@@ -25,6 +25,53 @@ body {
   overflow-x: hidden;
 }
 
+/* ===== LANG BUTTON ===== */
+.lang-btn {
+  background: transparent;
+  border: 2px solid var(--bleu-clair);
+  color: var(--bleu-clair);
+  padding: 6px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: bold;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  transition: all var(--transition);
+  margin-left: 10px;
+}
+
+.lang-btn:hover {
+  background: var(--bleu-clair);
+  color: var(--noir);
+}
+
+/* ===== CV BUTTON NAV ===== */
+.btn-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: var(--marron-rouge);
+  color: var(--white) !important;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+
+.btn-cv:hover {
+  background: var(--rouge-bord);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(166,16,29,0.4);
+}
+
+.btn-cv::after {
+  display: none !important;
+}
+
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--noir); }
@@ -51,14 +98,14 @@ body {
 .LogoNavBar { width: 6rem; height: 6rem; }
 .nav-logo span { color: var(--bleu-clair); }
 
-.nav-links { list-style: none; display: flex; gap: 2.5rem; }
+.nav-links { list-style: none; display: flex; gap: 2.5rem; align-items: center; }
 .nav-links a {
   text-decoration: none;
   color: var(--beige);
   font-size: 0.95rem;
   letter-spacing: 1px;
   text-transform: uppercase;
-  position: relative;
+  position: center;
   transition: color var(--transition);
 }
 .nav-links a::after {

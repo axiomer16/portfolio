@@ -245,6 +245,113 @@ function addRevealClasses() {
   });
 }
 
+
+// ===== TRADUCTIONS =====
+const translations = {
+  // Nav
+  'nav-home': { fr: 'Accueil', en: 'Home' },
+  'nav-about': { fr: 'À propos', en: 'About' },
+  'nav-projects': { fr: 'Projets', en: 'Projects' },
+  'nav-contact': { fr: 'Contact', en: 'Contact' },
+  'nav-cv': { fr: 'Mon CV', en: 'My CV' },
+
+  // Hero
+  'hero-tagline': { fr: 'Respect · Travail · Famille', en: 'Respect · Work · Family' },
+  'hero-btn': { fr: 'Voir mes projets', en: 'See my projects' },
+
+  // About
+  'about-title': { fr: 'À propos', en: 'About' },
+  'about-text-1': {
+    fr: "Bonjour je suis développeur passionné par la technologie, les voitures et les motos. Je construis des solutions robustes et élégantes, avec un soin extrême que j'applique dans tout ce que j'entreprends.",
+    en: "Hi, I'm a developer passionate about technology, cars and motorcycles. I build robust and elegant solutions, with extreme care that I apply in everything I do."
+  },
+  'about-quote': {
+    fr: '« Appliquer à autrui ce qu\'on applique à soi-même. »',
+    en: '« Apply to others what you apply to yourself. »'
+  },
+  'value-respect': { fr: 'Respect', en: 'Respect' },
+  'value-work': { fr: 'Travail', en: 'Work' },
+  'value-family': { fr: 'Famille', en: 'Family' },
+  'skills-title': { fr: 'Compétences', en: 'Skills' },
+
+  // Projects
+  'projects-title': { fr: 'Mes Projets GitHub', en: 'My GitHub Projects' },
+  'filter-all': { fr: 'Tous', en: 'All' },
+  'github-cta': { fr: 'Voir tout sur GitHub', en: 'See all on GitHub' },
+  'no-desc': { fr: 'Aucune description disponible.', en: 'No description available.' },
+
+  // Contact
+  'contact-title': { fr: 'Contact', en: 'Contact' },
+  'contact-text': {
+    fr: "Vous avez un projet de développement ? Je suis l'homme de la situation.",
+    en: "Have a development project? I'm the right person for it."
+  },
+  'form-name': { fr: 'Votre nom', en: 'Your name' },
+  'form-email': { fr: 'Votre email', en: 'Your email' },
+  'form-subject': { fr: 'Sujet', en: 'Subject' },
+  'form-message': { fr: 'Votre message', en: 'Your message' },
+  'form-send': { fr: 'Envoyer', en: 'Send' },
+  'form-success': {
+    fr: '✓ Message envoyé ! Je vous répondrai rapidement.',
+    en: '✓ Message sent! I will reply shortly.'
+  },
+  'form-error': {
+    fr: "⚠ Erreur lors de l'envoi.",
+    en: '⚠ Error while sending.'
+  },
+  'form-network-error': {
+    fr: '⚠ Erreur réseau. Réessayez plus tard.',
+    en: '⚠ Network error. Try again later.'
+  },
+
+  // Footer
+  'footer-text': { fr: 'Fait avec passion', en: 'Made with passion' },
+
+  // Scroll top
+  'scroll-top': { fr: 'Haut de page', en: 'Back to top' },
+};
+
+// ===== FONCTION TRADUCTION =====
+let currentLang = 'fr';
+
+function t(key) {
+  return translations[key]?.[currentLang] || key;
+}
+
+function applyTranslations() {
+  // Tous les éléments avec data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.textContent = t(el.dataset.i18n);
+  });
+
+  // Placeholders avec data-i18n-ph
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    el.placeholder = t(el.dataset.i18nPh);
+  });
+
+  // Titre de la page
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    el.title = t(el.dataset.i18nTitle);
+  });
+
+  // Lien CV
+  const cvLink = document.getElementById('cv-download');
+  if (cvLink) {
+    cvLink.href = currentLang === 'fr' ? 'Cv.pdf' : 'CvAnglais.pdf';
+  }
+}
+
+// ===== BOUTON LANGUE =====
+const langBtn = document.getElementById('langToggle');
+
+langBtn.addEventListener('click', () => {
+  currentLang = currentLang === 'fr' ? 'en' : 'fr';
+  langBtn.textContent = currentLang === 'fr' ? 'EN' : 'FR';
+  applyTranslations();
+  renderProjects(); // re-render les cartes avec la bonne langue
+});
+
+
 // ===== INIT =====
 document.addEventListener("DOMContentLoaded", () => {
   addRevealClasses();
